@@ -3,5 +3,4 @@ asdf
 adsf
 aaaaaaaaaaaaaaaaa
 
-
-修改bug
+修改bug工作中stash功
