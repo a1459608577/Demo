@@ -19,7 +19,7 @@
     </dependencies>
 
     <build>
-        <finalName>aop_annotation</finalName>
+<!--        <finalName>test1</finalName>-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
