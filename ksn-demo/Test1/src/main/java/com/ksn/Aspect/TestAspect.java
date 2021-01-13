@@ -88,6 +88,8 @@ public class TestAspect {
         System.out.println(proceed);
         log.error("【{}】类的【{}】方法执行了环绕通知方法 【{}】", aClass.getName(), name, declaringTypeName);
         map.put("asdf", "asdf");
+        map.put("asdf1", "asdf1");
+        map.put("asdf2", "asdf2");
         System.out.println(JSON.toJSONString(map));
         byte[] bytes = JSON.toJSONString(map).getBytes();
         ServletOutputStream outputStream = response.getOutputStream();
