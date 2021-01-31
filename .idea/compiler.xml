@@ -7,12 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="localDateTime-demo" />
+        <module name="quartz1-demo" />
         <module name="ksn-model" />
         <module name="ksn-gateway" />
         <module name="ksn-common" />
         <module name="ksn-auth" />
         <module name="ksn-generator" />
-        <module name="Test1" />
+        <module name="aspect-demo" />
+        <module name="quartz-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
