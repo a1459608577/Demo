@@ -15,8 +15,8 @@
     <modules>
         <module>aspect-demo</module>
         <module>localDateTime-demo</module>
-        <module>quartz1-demo</module>
         <module>quartz-demo</module>
+        <module>websocket-demo</module>
     </modules>
 
     <dependencies>
