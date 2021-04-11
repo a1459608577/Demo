@@ -1,4 +1,4 @@
-package com.ksn.domain;
+package com.ksn.controller;
 
 import com.ksn.annotation.TestAnnotation;
 import io.swagger.annotations.Api;

@@ -17,6 +17,9 @@
         <module>localDateTime-demo</module>
         <module>quartz-demo</module>
         <module>websocket-demo</module>
+        <module>ImportExcel-demo</module>
+        <module>imgMerge-demo</module>
+        <module>obServer-demo</module>
     </modules>
 
     <dependencies>

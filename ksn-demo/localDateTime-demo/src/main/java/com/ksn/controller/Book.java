@@ -1,4 +1,4 @@
-package com.ksn.domain;
+package com.ksn.controller;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;

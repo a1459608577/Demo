@@ -1,6 +1,6 @@
 package com.ksn.com.ksn.controller;
 
-import com.ksn.domain.Book;
+import com.ksn.controller.Book;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;

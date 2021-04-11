@@ -16,6 +16,7 @@
         <module>ksn-auth</module>
         <module>ksn-gateway</module>
         <module>ksn-demo</module>
+        <module>ImportExcel-demo</module>
     </modules>
 
     <properties>

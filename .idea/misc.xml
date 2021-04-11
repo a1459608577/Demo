@@ -8,10 +8,13 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/ksn-demo/websocket-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/ksn-demo/javaToPDF/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/ImportExcel-demo/pom.xml" />
         <option value="$PROJECT_DIR$/Test1/pom.xml" />
         <option value="$PROJECT_DIR$/aop_annotation/pom.xml" />
         <option value="$PROJECT_DIR$/ksn-demo/aop_annotation/pom.xml" />

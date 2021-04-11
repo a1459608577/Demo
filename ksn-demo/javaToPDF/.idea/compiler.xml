@@ -7,19 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="obServer-demo" />
-        <module name="ksn-auth" />
-        <module name="ImportExcel-demo" />
-        <module name="aspect-demo" />
-        <module name="localDateTime-demo" />
-        <module name="websocket-demo" />
-        <module name="ksn-model" />
-        <module name="ksn-generator" />
         <module name="javaToPDF" />
-        <module name="ksn-gateway" />
-        <module name="quartz-demo" />
-        <module name="ksn-common" />
-        <module name="imgMerge-demo" />
       </profile>
     </annotationProcessing>
   </component>
