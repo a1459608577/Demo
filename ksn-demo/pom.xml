@@ -19,7 +19,7 @@
         <module>websocket-demo</module>
         <module>ImportExcel-demo</module>
         <module>imgMerge-demo</module>
-        <module>obServer-demo</module>
+        <module>webflux-demo</module>
     </modules>
 
     <dependencies>

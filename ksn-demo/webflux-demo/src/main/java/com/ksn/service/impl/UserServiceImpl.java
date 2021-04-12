@@ -41,7 +41,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public Mono<Void> save(Mono<User> user) {
         return user.doOnNext(person -> {
-            map.put(map.size() + 1, new User(map.size() + 1, person.getName(), new Date()));
+            Integer size = map.size() + 1;
+            map.put(size.toString(), new User(map.size() + 1, person.getName(), new Date()));
         }).thenEmpty(Mono.empty());
     }
 }

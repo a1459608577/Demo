@@ -16,7 +16,8 @@
         <module>ksn-auth</module>
         <module>ksn-gateway</module>
         <module>ksn-demo</module>
-        <module>ImportExcel-demo</module>
+        <module>ksn-demo/ImportExcel-demo</module>
+        <module>ksn-demo/webflux-demo</module>
     </modules>
 
     <properties>

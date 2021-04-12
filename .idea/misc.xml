@@ -10,6 +10,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/ksn-demo/websocket-demo/pom.xml" />
         <option value="$PROJECT_DIR$/ksn-demo/javaToPDF/pom.xml" />
+        <option value="$PROJECT_DIR$/ksn-demo/webflux-demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
