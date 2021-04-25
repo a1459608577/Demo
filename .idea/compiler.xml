@@ -8,6 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="webflux-demo" />
+        <module name="pub-sub-redis-demo" />
+        <module name="dynamicDataSource-demo" />
         <module name="ksn-auth" />
         <module name="ImportExcel-demo" />
         <module name="aspect-demo" />
@@ -24,7 +26,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="obServer-demo" target="1.8" />
-      <module name="webflux-demo" target="1.8" />
+      <module name="sub-redis-demo" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

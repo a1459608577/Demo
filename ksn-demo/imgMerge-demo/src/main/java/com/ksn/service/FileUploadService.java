@@ -19,5 +19,11 @@ public interface FileUploadService {
      */
     void upload(MultipartFile file, HttpServletResponse response) throws IOException;
 
+    /**
+     * 写入文件
+     * @param file
+     * @param response
+     * @throws IOException
+     */
     void uploadFile(MultipartFile file, HttpServletResponse response) throws IOException;
 }
