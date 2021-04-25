@@ -9,5 +9,5 @@ spring:
       username: root
       password: root
   application:
-    name: Test1
+    name: aspect-demo
 
