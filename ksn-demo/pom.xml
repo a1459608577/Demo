@@ -24,6 +24,8 @@
         <module>webflux-demo</module>
         <module>pub-sub-redis-demo</module>
         <module>dynamicDataSource-demo</module>
+        <module>listener-demo</module>
+        <module>design-demo</module>
     </modules>
 
     <dependencies>

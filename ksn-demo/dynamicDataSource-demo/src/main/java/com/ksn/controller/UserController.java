@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -40,5 +41,10 @@ public class UserController {
     public String test3() {
         userService.add();
         return "success3";
+    }
+
+    @GetMapping("/test4")
+    public String test4(@RequestParam(name = "page.size") String size) {
+        return size;
     }
 }

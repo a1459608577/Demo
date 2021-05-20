@@ -13,8 +13,12 @@
     <description>数据模块</description>
 
     <dependencies>
+<!--        y邮件相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
         <!--    spring data redis    -->
-
         <!--markdown to html-->
         <dependency>
             <groupId>com.vladsch.flexmark</groupId>

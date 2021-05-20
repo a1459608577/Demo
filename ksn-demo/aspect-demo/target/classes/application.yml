@@ -1,5 +1,5 @@
 server:
-  port: 8991
+  port: 8009
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -9,5 +9,5 @@ spring:
       username: root
       password: root
   application:
-    name: Test1
+    name: aspect-demo
 

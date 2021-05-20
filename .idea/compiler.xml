@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
+    <option name="BUILD_PROCESS_HEAP_SIZE" value="1024" />
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
@@ -16,10 +17,12 @@
         <module name="localDateTime-demo" />
         <module name="websocket-demo" />
         <module name="ksn-model" />
+        <module name="listener-demo" />
         <module name="ksn-generator" />
         <module name="javaToPDF" />
         <module name="ksn-gateway" />
         <module name="quartz-demo" />
+        <module name="design-demo" />
         <module name="ksn-common" />
         <module name="imgMerge-demo" />
       </profile>
@@ -27,6 +30,7 @@
     <bytecodeTargetLevel>
       <module name="obServer-demo" target="1.8" />
       <module name="sub-redis-demo" target="1.8" />
+      <module name="wxpay-sdk" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
