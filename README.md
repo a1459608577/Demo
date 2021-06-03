@@ -1,8 +1,11 @@
 # Demo
 
 ### aspect-demo:
-* 包含aop相关内容
-* 使用java原生定时任务Timer，使用线程池newScheduledThreadPool，还有spring的定时任务实现方式
+### ksn-auth:
+* springsecurity实现权限认证
+### aspect-demo:
+ * 包含aop相关内容
+ * 使用java原生定时任务Timer，使用线程池newScheduledThreadPool，还有spring的定时任务实现方式
 ### dynamicDataSource-demo
 * 包含动态数据源实现方式
 * 原型设计模式的实现
@@ -28,6 +31,7 @@
 * 使用了两种方式实现聊天功能
 ### listener-demo
 * 使用springboot的监听器以及自定义监听器    [参考链接](https://blog.csdn.net/heshengfu1211/article/details/107420725?utm_medium=distribute.pc_relevant.none-task-blog-baidujs_title-4&spm=1001.2101.3001.4242)
+
 ### syncTool-demo
 * 四种同步工具类CountDownLatch，CyclicBarrier，Semaphore，Exchanger
 
