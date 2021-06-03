@@ -38,7 +38,7 @@
             LEFT JOIN pcsp_sys_scope_info ssi1 ON ssi1.ID = ps1.SCOPE_ID
             LEFT JOIN pcsp_sys_platform_grant_type g ON g.PLATFORM_ID = p.ID
             LEFT JOIN pcsp_sys_grant_type_info gti ON gti.ID = g.GRANT_TYPE_ID
-            AND p.PLATFORM_KEY = #{clientId}
+            WHERE p.PLATFORM_KEY = #{clientId}
     </select>
 
 

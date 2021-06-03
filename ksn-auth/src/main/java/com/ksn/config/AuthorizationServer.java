@@ -6,6 +6,8 @@ import cn.hutool.core.collection.CollectionUtil;
 import com.ksn.filter.CustomClientCredentialsTokenEndpointFilter;
 import com.ksn.handle.CustomizeAuthenticationEntryPoint;
 import com.ksn.handle.MobileCodeTokenGranter;
+import com.ksn.service.AuthClientDetailsService;
+import com.ksn.service.AuthUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +27,6 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.CompositeTokenGranter;
 import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.client.ClientCredentialsTokenGranter;
-import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenGranter;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
@@ -37,7 +38,6 @@ import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter;
 import org.springframework.security.oauth2.provider.token.*;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
-import javax.sql.DataSource;
 import java.util.ArrayList;
 
 /**
@@ -51,8 +51,6 @@ import java.util.ArrayList;
 public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
-    private DataSource dataSource;
-    @Autowired
     private TokenStore tokenStore;
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
@@ -62,20 +60,23 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
     private AuthenticationManager authenticationManager;
     @Autowired
     private CustomizeAuthenticationEntryPoint customizeAuthenticationEntryPoint;
-//    @Autowired
-//    private ClientDetailsService clientDetailsService;
+    @Autowired
+    private AuthUserDetailsService authUserDetailsService;
 
-
-    @Bean("clientDetailsService1")
-    public ClientDetailsService clientDetailsService() {
-        return new JdbcClientDetailsService(dataSource);
+    /**
+     * 指定 ClientDetailsService 接口对应的 bean 就是真实的 bean
+     * @return
+     */
+    @Bean
+    public ClientDetailsService myClientDetailsService() {
+        return new AuthClientDetailsService();
     }
 
     @Bean
     public AuthorizationServerTokenServices tokenServices() {
         DefaultTokenServices services = new DefaultTokenServices();
 
-        services.setClientDetailsService(clientDetailsService());
+        services.setClientDetailsService(myClientDetailsService());
         services.setTokenStore(tokenStore);
         services.setSupportRefreshToken(true);
         services.setReuseRefreshToken(true);
@@ -137,7 +138,7 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(clientDetailsService());
+        clients.withClientDetails(myClientDetailsService());
     }
 
     @Override
@@ -148,9 +149,9 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
                 .tokenEnhancer(tokenEnhancer)
                 .accessTokenConverter(jwtAccessTokenConverter)
                 .exceptionTranslator(exceptionTranslator())
+                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.OPTIONS, HttpMethod.POST)
                 // 配置自定义授权模式
-                .tokenGranter(tokenGranter1(endpoints))
-                .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.OPTIONS, HttpMethod.POST);
+                .tokenGranter(tokenGranter1(endpoints));
     }
 
     private TokenGranter tokenGranter1(AuthorizationServerEndpointsConfigurer  endpoint) {
@@ -171,7 +172,8 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
         list.add(new MobileCodeTokenGranter(authenticationManager
                 ,endpoint.getTokenServices()
                 ,endpoint.getClientDetailsService()
-                ,endpoint.getOAuth2RequestFactory()));
+                ,endpoint.getOAuth2RequestFactory()
+                ,authUserDetailsService));
         // 授权码模式
         list.add(new AuthorizationCodeTokenGranter(endpoint.getTokenServices()
                 ,endpoint.getAuthorizationCodeServices()
