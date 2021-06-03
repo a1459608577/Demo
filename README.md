@@ -1,6 +1,6 @@
 # Demo
 
-### auth-center:
+### ksn-auth:
 * springsecurity实现权限认证
 ### aspect-demo:
  * 包含aop相关内容
