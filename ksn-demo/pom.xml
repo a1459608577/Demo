@@ -30,6 +30,11 @@
 
     <dependencies>
         <dependency>
+            <artifactId>ksn-common</artifactId>
+            <groupId>org.example</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <artifactId>ksn-model</artifactId>
             <groupId>org.example</groupId>
             <version>1.0-SNAPSHOT</version>

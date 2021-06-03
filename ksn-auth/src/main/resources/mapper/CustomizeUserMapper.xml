@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksn.mapper.CustomizeUserDetailsMapper">
+
+    <resultMap id="map" type="entity.auth.CustomizeUserDetails">
+        <id column="id" property="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="accountNonExpired" column="accountNonExpired"/>
+        <result property="accountNonLocked" column="accountNonLocked"/>
+        <result property="credentialsNonExpired" column="credentialsNonExpired"/>
+        <result property="enabled" column="enabled"/>
+
+        <collection property="roles" column="id=id" select="selectRole"></collection>
+    </resultMap>
+
+    <select id="selectRole" resultType="entity.auth.Role">
+        SELECT
+            r.id,
+            r.name,
+            r.nameZh
+        FROM
+            t_user_role ur
+            LEFT JOIN t_role r ON r.id = ur.t_role_id
+        WHERE
+            ur.t_user_id = #{id}
+    </select>
+
+    <select id="selectByName" resultMap="map">
+        SELECT
+            u.id,
+            u.username,
+            u.password,
+            u.accountNonExpired,
+            u.accountNonLocked,
+            u.credentialsNonExpired,
+            u.enabled
+        FROM
+            t_user u
+                LEFT JOIN t_user_role ur ON u.id = ur.t_user_id
+                LEFT JOIN t_role r ON r.id = ur.t_role_id
+        WHERE
+            u.username = #{username}
+    </select>
+</mapper>

@@ -48,4 +48,10 @@ public class WebSocketController {
         map.put("msg", "success");
         return map;
     }
+
+    @ResponseBody
+    @GetMapping("/test")
+    public String test() {
+        return "map";
+    }
 }

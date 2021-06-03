@@ -11,5 +11,11 @@
 
     <artifactId>ksn-auth</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <artifactId>ksn-common</artifactId>
+            <groupId>org.example</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

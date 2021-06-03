@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ksn.mapper.AuthClientDetailsMapper">
+
+    <resultMap id="map" type="entity.auth.AuthClientDetails">
+        <id column="id" property="id"/>
+        <result property="appId" column="PLATFORM_KEY"/>
+        <result property="privateKey" column="SECRET_KEY"/>
+        <result property="tokenRefreshSeconds" column="TOKEN_LIMIT_TIME"/>
+        <result property="tokenValidSeconds" column="TOKEN_LIMIT_TIME"/>
+        <collection property="grantTypes" ofType="string" javaType="list">
+            <result column="GRANT_TYPE_NAME"/>
+        </collection>
+        <collection property="scopes" ofType="string" javaType="list">
+            <result column="SCOPE_NAME"/>
+        </collection>
+        <collection property="autoApproveScope" ofType="string" javaType="list">
+            <result column="AUTO_SCOPE_NAME"/>
+        </collection>
+    </resultMap>
+
+    <select id="loadClientDetailsByClientId" resultMap="map">
+        SELECT
+            p.ID,
+            p.PLATFORM_KEY,
+            p.SECRET_KEY,
+            p.PLATFORM_NAME,
+            p.TOKEN_LIMIT_TIME * 60 AS TOKEN_LIMIT_TIME,
+            ssi.SCOPE_NAME,
+            ssi1.SCOPE_NAME AS AUTO_SCOPE_NAME,
+            gti.GRANT_TYPE_NAME
+        FROM
+            pcsp_sys_platform_info p
+            LEFT JOIN pcsp_sys_platform_scope ps ON ps.PLATFORM_ID = p.ID
+            LEFT JOIN pcsp_sys_scope_info ssi ON ssi.ID = ps.SCOPE_ID
+            LEFT JOIN pcsp_sys_platform_scope ps1 ON ps1.PLATFORM_ID = p.ID AND ps1.AUTO_FLAG = 1
+            LEFT JOIN pcsp_sys_scope_info ssi1 ON ssi1.ID = ps1.SCOPE_ID
+            LEFT JOIN pcsp_sys_platform_grant_type g ON g.PLATFORM_ID = p.ID
+            LEFT JOIN pcsp_sys_grant_type_info gti ON gti.ID = g.GRANT_TYPE_ID
+            AND p.PLATFORM_KEY = #{clientId}
+    </select>
+
+
+</mapper>

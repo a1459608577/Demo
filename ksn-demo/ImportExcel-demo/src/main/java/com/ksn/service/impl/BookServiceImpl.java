@@ -1,7 +1,10 @@
 package com.ksn.service.impl;
 
+import cn.hutool.json.JSONUtil;
+import cn.hutool.poi.excel.ExcelReader;
+import cn.hutool.poi.excel.ExcelUtil;
+import com.ksn.entity.TestEntity;
 import com.ksn.service.BookService;
-import entity.Book;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Service;
@@ -21,14 +24,19 @@ import java.util.List;
 public class BookServiceImpl implements BookService {
 
     public static void main(String[] args) throws IOException, InvalidFormatException, IllegalAccessException, InstantiationException, ClassNotFoundException {
-        BookService bookService = new BookServiceImpl();
-        List<List<String>> lists = bookService.excelToData("F:\\minxing\\testExcel.xlsx");
-        System.out.println(lists);
+//        BookService bookService = new BookServiceImpl();
+//        List<List<String>> lists = bookService.excelToData("G:\\a.xlsx");
+//        System.out.println(lists);
+        ExcelReader reader = ExcelUtil.getReader("G:\\a.xlsx", 0);
+        List<List<Object>> lists = reader.read();
 
+        ArrayList<TestEntity> list = new ArrayList<>();
         for (int i = 0; i < lists.size(); i++) {
-            Book book = BookServiceImpl.getObj(Book.class, lists.get(i));
-            System.out.println(book);
+            TestEntity obj = BookServiceImpl.getObj(TestEntity.class, lists.get(i));
+//            System.out.println(obj);
+            list.add(obj);
         }
+        System.out.println(JSONUtil.toJsonStr(list));
     }
 
     public static <T>T getObj(Class<T> clazz, List list) throws IllegalAccessException, InstantiationException {

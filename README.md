@@ -1,4 +1,5 @@
 # Demo
+
 ###aspect-demo:
 * 包含aop相关内容
 * 使用java原生定时任务Timer，使用线程池newScheduledThreadPool，还有spring的定时任务实现方式
@@ -6,6 +7,7 @@
 * 包含动态数据源实现方式
 * 原型设计模式的实现
 * 发送邮件的例子
+* war, jar打包方式
 ###imgMerge-demo
 * 包含合并图片功能，以及文件上传
 ###ImportExcel-demo
@@ -21,6 +23,7 @@
 ###webflux-demo
 * 使用java中Observable，Observer实现观察者模式
 * 自定义webflux服务器
+* >>, <<, >>>符号的使用
 ###websocket-demo
 * 使用了两种方式实现聊天功能
 ###listener-demo

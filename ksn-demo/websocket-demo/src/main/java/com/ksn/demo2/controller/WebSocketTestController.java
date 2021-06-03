@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.security.Principal;
 
 /**
  * @author ksn
@@ -41,5 +41,11 @@ public class WebSocketTestController {
         } else {
             template.convertAndSendToUser(receivedName, "/queue/notifications", server2ClientMessage);
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/test")
+    public String test() {
+        return "map";
     }
 }

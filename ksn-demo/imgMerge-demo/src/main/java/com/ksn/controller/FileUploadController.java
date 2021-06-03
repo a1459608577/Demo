@@ -3,10 +3,7 @@ package com.ksn.controller;
 import com.ksn.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +32,13 @@ public class FileUploadController {
     @PostMapping("/uploadFile")
     public String test2(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         fileUploadService.uploadFile(file, response);
+        return "success";
+    }
+
+    @ResponseBody
+    @GetMapping("/test/{id}")
+    public String test3(@PathVariable("id") String id) throws IOException {
+        System.out.println(id);
         return "success";
     }
 }

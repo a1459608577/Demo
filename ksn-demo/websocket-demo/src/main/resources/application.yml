@@ -19,3 +19,11 @@ spring:
       url: jdbc:mysql:///demo?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&serverTimezone=PRC&useSSL=false&autoReconnect=true
       username: root
       password: root
+  application:
+    name: websocket-demo
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+server:
+  port: 8011
