@@ -47,11 +47,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/js/**", "/css/**", "/images/**");
+        web.ignoring()//.antMatchers("/js/**", "/css/**", "/images/**")
+                .antMatchers("/v2/api-docs", "/swagger-resources/configuration/ui",
+                "/swagger-resources","/swagger-resources/configuration/security",
+                "/swagger-ui.html","/css/**", "/js/**","/images/**", "/webjars/**", "**/favicon.ico", "/index"
+        );
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers( "/",
+                        "/public/**",
+                        "/oauth/public/**",
+                        "/webjars/**",
+                        "webjars/springfox-swagger-ui/**",
+                        "webjars/springfox-swagger-ui",
+                        "/configuration/**",
+                        "/swagger-ui.html",
+                        "/static/**",
+                        "/v2/api-docs**",
+                        "/swagger-resources/**",
+                        "/druid/**",
+                        "/oauth/**",
+                        "/doc.html",
+                        "/actuator/**").permitAll();
         http.authorizeRequests()
                 .anyRequest().authenticated();
     }

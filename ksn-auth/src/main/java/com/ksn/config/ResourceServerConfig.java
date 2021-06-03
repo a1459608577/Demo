@@ -43,6 +43,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+
         http.formLogin().successHandler(successHandler).failureHandler(failureHandler)
                 .usernameParameter("an").passwordParameter("ap");
 

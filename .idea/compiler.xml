@@ -8,6 +8,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="syncTool-demo" />
         <module name="webflux-demo" />
         <module name="pub-sub-redis-demo" />
         <module name="dynamicDataSource-demo" />
@@ -30,6 +31,7 @@
     <bytecodeTargetLevel>
       <module name="obServer-demo" target="1.8" />
       <module name="sub-redis-demo" target="1.8" />
+      <module name="test" target="1.8" />
       <module name="wxpay-sdk" target="1.8" />
     </bytecodeTargetLevel>
   </component>

@@ -49,6 +49,22 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers( "/",
+                        "/public/**",
+                        "/oauth/public/**",
+                        "/webjars/**",
+                        "webjars/springfox-swagger-ui/**",
+                        "webjars/springfox-swagger-ui",
+                        "/configuration/**",
+                        "/swagger-ui.html",
+                        "/static/**",
+                        "/v2/api-docs**",
+                        "/swagger-resources/**",
+                        "/druid/**",
+                        "/oauth/**",
+                        "/doc.html",
+                        "/actuator/**").permitAll();
         http.authorizeRequests().antMatchers("/admin/**").hasRole("admin").anyRequest().authenticated();
     }
 }

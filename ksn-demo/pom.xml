@@ -26,6 +26,7 @@
         <module>dynamicDataSource-demo</module>
         <module>listener-demo</module>
         <module>design-demo</module>
+        <module>syncTool-demo</module>
     </modules>
 
     <dependencies>

@@ -1,5 +1,7 @@
 package com.ksn.controller;
 
+import base.AgileException;
+import base.ExceptionStatus;
 import com.ksn.annotation.TestAnnotation;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,6 +39,11 @@ public class TestController {
     @GetMapping("/test2")
     @ResponseBody
     public String test2() {
+        try {
+            int a = 1/0;
+        } catch (Exception e) {
+            throw new AgileException(ExceptionStatus.MULTI_STATUS);
+        }
         return "test2";
     }
 
