@@ -1,8 +1,10 @@
 # Demo
 
+### auth-center:
+* springsecurity实现权限认证
 ### aspect-demo:
-  * 包含aop相关内容
-  * 使用java原生定时任务Timer，使用线程池newScheduledThreadPool，还有spring的定时任务实现方式
+ * 包含aop相关内容
+ * 使用java原生定时任务Timer，使用线程池newScheduledThreadPool，还有spring的定时任务实现方式
 ### dynamicDataSource-demo
 * 包含动态数据源实现方式
 * 原型设计模式的实现
