@@ -190,4 +190,12 @@ public class AuthorizationServer extends AuthorizationServerConfigurerAdapter {
 
         return new CompositeTokenGranter(list);
     }
+
+    public static void main(String[] args) {
+        // 0010
+        // 0101
+        // 0000
+        int a = 2 & 5;
+        System.out.println(a);
+    }
 }

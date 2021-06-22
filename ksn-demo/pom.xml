@@ -27,6 +27,7 @@
         <module>listener-demo</module>
         <module>design-demo</module>
         <module>syncTool-demo</module>
+        <module>redis-sentinel-demo</module>
     </modules>
 
     <dependencies>

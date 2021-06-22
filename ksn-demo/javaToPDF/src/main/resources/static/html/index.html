@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/jquery-3.4.1.js"></script>
+<!--    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>-->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table align="center" style="margin-bottom: 30px; border: 1px solid black;">
+            <tr>
+                <td colspan="5">
+                    <h2>输入的时候必须从最长的开始填写</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>请输入要切割的长度：</td>
+                <td><input v-model="cutLength"/></td>
+                <td>请输入要切割的数量：</td>
+                <td><input v-model="cutNum"/></td>
+                <td><input type="button" @click="add" value="增加"></td>
+            </tr>
+            <tr>
+                <td>请输入每根材料的总长：</td>
+                <td colspan="3">
+                    <input style="width: 450px;" v-model="totalLength" :disabled="flag"/>
+                    <button @click="confirm(1)">确定</button>
+                </td>
+                <td>
+                    <input type="button" @click="calculation" value="计算">
+                </td>
+            </tr>
+        </table>
+
+        <table align="center" style="margin-bottom: 30px; width: 765px; border: 1px solid red;">
+            <tr>
+                <th>长度</th>
+                <th>数量</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(arr, index) in list" :key="index">
+                <td>{{arr.cutLength}}</td>
+                <td>{{arr.cutNum}}</td>
+                <td>
+                    <button @click.prevent="del(index)">删除</button>
+                </td>
+            </tr>
+        </table>
+
+        <table align="center" style="min-width: 765px; border: 1px solid blue;">
+            <tr>
+                <td colspan="4">
+                    切割方案：所需材料 {{ tabData.length }} 根
+                </td>
+            </tr>
+            <tr>
+                <th>序号</th>
+                <th>总长</th>
+                <th>方案</th>
+                <th>余料</th>
+            </tr>
+            <tr v-for="(item, index) in tabData" :key="index">
+                <td>第{{ index + 1 }}根</td>
+                <td>{{ item.totalLength }}</td>
+                <td>
+                    <span v-for="(entity, i) in item.cutPlans" :key="i">
+                        [ 长度：<span style="color: red">{{ entity.cutLength }}</span> * 数量：<span style="color: blueviolet">{{ entity.cutNum }}</span> ]
+                    </span>
+                </td>
+                <td>{{ item.redundant }}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el : '#app',
+        data: {
+            totalLength: '',
+            cutLength: '',
+            cutNum: '',
+            list: [],
+            tabData: [],
+            flag: false
+        },
+        methods: {
+            add () {
+                if (this.cutLength != '' && this.cutNum != '') {
+                    this.list.push({cutLength:this.cutLength, cutNum:this.cutNum});
+                    this.cutLength = '';
+                    this.cutNum = '';
+                } else {
+                    alert("不能提交空值！")
+                }
+            },
+            del (i) {
+                var _this = this;
+                function some(item,index,list) {
+                    if (index === i) {
+                        _this.list.splice(index,1);
+                        return true;
+                    }
+                };
+                this.list.some(some);
+            },
+            calculation () {
+                if (this.list.length <= 0 || this.totalLength == '' || this.totalLength < 0) {
+                    alert("请输入正确的数据!!");
+                    return;
+                }
+                for (let i = 0; i < this.list.length; i++) {
+                    if (parseInt(this.list[i].cutLength) > parseInt(this.totalLength)) {
+                        alert("切割长度不能大于材料长度!!");
+                        return;
+                    }
+                }
+                const data = {totalLength: this.totalLength, cutPlans: this.list};
+                const r = confirm("确定提交吗?")
+                const _this =this
+                if (r) {
+                    $.ajax({
+                        type: 'POST',
+                        cache: false,
+                        dataType: 'json',
+                        contentType: 'application/json;',
+                        async: false,
+                        url: 'http://127.0.0.1:8010/cut/plan/calculation',
+                        data: JSON.stringify(data),
+                        success: function (res) {
+                            _this.tabData = res;
+                        },
+                        error: function (data) {
+                            alert("计算失败");
+                            console.log(data);
+                        }
+                    });
+                } else {
+                    alert("取消提交！");
+                    return;
+                }
+            },
+            confirm () {
+                this.flag = true
+            }
+        }
+    }) 
+</script>
+<style>
+    td {
+        border: 1px solid black;
+    }
+    tr {
+        border: 1px solid black;
+    }
+    th {
+        border: 1px solid black;
+    }
+    body {
+        text-align: center;
+    }
+</style>
+</html>

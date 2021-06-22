@@ -33,6 +33,11 @@ public class PDFUtil {
         addFont(renderer, fonts);
         try (OutputStream os = new FileOutputStream(pdf)) {
             renderer.setDocumentFromString(html);
+            // html中如果有图片，图片的路径则使用这里设置的路径的相对路径，这个是作为根路径
+//            if (imageDiskPath != null && !"".equals(imageDiskPath)) {
+//                renderer.getSharedContext().setBaseURL("file:/" + "G:\\\\Image\\\\0EE83437.jpg");
+//            }
+            renderer.getSharedContext().setBaseURL("file:/" + "G:\\\\Image\\\\0EE83437.jpg");
             renderer.layout();
             renderer.createPDF(os);
         }
@@ -53,9 +58,10 @@ public class PDFUtil {
     // 加载准备好的字体
     private static void addFont(ITextRenderer renderer, String... fonts) throws DocumentException, IOException {
         ITextFontResolver fontResolver = renderer.getFontResolver();
-        for (String font : fonts) {
-            fontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-        }
+//        for (String font : fonts) {
+//            fontResolver.addFont(font, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+//        }
+        fontResolver.addFont("F:\\idea-workspace\\Demo\\ksn-demo\\javaToPDF\\src\\main\\resources\\static\\FELIXTI.TTF", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
     }
 
     // 初始化 FreeMarker 配置
@@ -128,54 +134,62 @@ public class PDFUtil {
         int total = pdfReader.getNumberOfPages() + 1;
         // 获取图片示例
         Image image = Image.getInstance(imgPath);
+        Image image1 = Image.getInstance(imgPath);
 
         // 水印位置
-        image.setAbsolutePosition(300, 80);
+        image.setAbsolutePosition(400f, 750f);
         image.setTransparency(new int[] {1, 1});
-        image.setWidthPercentage(5f);
-//        image.scaleToFit();
+        image.scalePercent(68.8f);
+
+        image1.setAbsolutePosition(100f, 500f);
+        image1.setTransparency(new int[] {1, 1});
+//        调整图片整体缩小放大
+//        image1.scalePercent(68.8f);
+//      调整图片的长 宽
+        image1.scaleAbsolute(100f, 100f);
+//        image.setWidthPercentage(5f);
+
         PdfContentByte under;
-        int j = waterMarkName.length();
-        char c = 0;
-        int rise = 0;
-        for (int i = 1; i < total; i++) {
-            rise = 200;
-            under = pdfStamper.getUnderContent(i);
+//        int j = waterMarkName.length();
+//        char c = 0;
+//        int rise = 0;
+//        for (int i = 1; i < total; i++) {
+//            rise = 200;
+            under = pdfStamper.getUnderContent(1);
             under.beginText();
             under.setFontAndSize(baseFont, 14);
-
-            if (j >= 15) {
-                under.setTextMatrix(200, 120);
-                for (int k = 0; k < j; k++) {
-                    under.setTextRise(rise);
-                    c = waterMarkName.charAt(k);
-                    under.showText(c + "");
-                }
-            } else {
-                under.setTextMatrix(300, 100);
-                for (int k = 0; k < j; k++) {
-                    under.setTextRise(rise);
-                    c = waterMarkName.charAt(k);
-                    under.showText(c + "");
-                    rise -= 18;
-
-                }
-            }
-
+//            if (j >= 15) {
+//                under.setTextMatrix(200, 120);
+//                for (int k = 0; k < j; k++) {
+//                    under.setTextRise(rise);
+//                    c = waterMarkName.charAt(k);
+//                    under.showText(c + "");
+//                }
+//            } else {
+//                under.setTextMatrix(300, 100);
+//                for (int k = 0; k < j; k++) {
+//                    under.setTextRise(rise);
+//                    c = waterMarkName.charAt(k);
+//                    under.showText(c + "");
+//                    rise -= 18;
+//
+//                }
+//            }
             // 添加水印文字
-            under.endText();
+            // under.endText();
             // 添加水印图片
             under.addImage(image);
+            under.addImage(image1);
             // 画个圈
-            under.ellipse(250, 450, 350, 550);
+            // under.ellipse(250, 450, 350, 550);
             under.setLineWidth(1f);
             under.stroke();
-        }
+//        }
         pdfStamper.close();
     }
 
     public static void main(String[] args) {
-        String imageFilePath = "G:/0EEAAAFC.jpg"; // 水印图片路径
+        String imageFilePath = "G:/3.jpg"; // 水印图片路径
         String pdfFilePath = "G:/itext.pdf"; // 文件生成路径
         buidPDF(pdfFilePath, imageFilePath, "正版授权", 16);
     }

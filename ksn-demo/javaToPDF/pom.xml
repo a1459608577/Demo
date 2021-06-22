@@ -15,7 +15,25 @@
         <spring.boot.version>2.1.9.RELEASE</spring.boot.version>
     </properties>
 
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>com.e-iceblue</id>-->
+<!--            <name>e-iceblue</name>-->
+<!--            <url>http://repo.e-iceblue.com/nexus/content/groups/public/</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
+
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId> e-iceblue </groupId>-->
+<!--            <artifactId>spire.pdf</artifactId>-->
+<!--            <version>3.11.6</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>net.sf.barcode4j</groupId>
+            <artifactId>barcode4j-light</artifactId>
+            <version>2.0</version>
+        </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itext7-core</artifactId>
@@ -67,5 +85,21 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

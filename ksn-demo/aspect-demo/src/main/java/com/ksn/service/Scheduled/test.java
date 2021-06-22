@@ -4,6 +4,10 @@ import cn.hutool.core.util.ArrayUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author ksn
  * @version 1.0
@@ -11,6 +15,8 @@ import org.slf4j.LoggerFactory;
  */
 public class test {
     private static final Logger log = LoggerFactory.getLogger(test.class);
+    public static final List<String> list = new ArrayList<>(Arrays.asList("1", "2"));
+    public static final String a = "asdf";
 
 
     public static void main(String[] args) {

@@ -1,0 +1,16 @@
+spring:
+  redis:
+    lettuce:
+      pool:
+        max-active: 256
+        max-idle: 64
+        max-wait: 30000
+        min-idle: 32
+    password: 123456
+    timeout: 50000
+    sentinel:
+      master: mymaster
+      nodes: 192.168.255.128:26379,192.168.255.128:26380,192.168.255.128:26381
+      password: 123456
+  main:
+    allow-bean-definition-overriding: true

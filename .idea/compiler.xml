@@ -26,6 +26,7 @@
         <module name="design-demo" />
         <module name="ksn-common" />
         <module name="imgMerge-demo" />
+        <module name="redis-sentinel-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
